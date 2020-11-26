@@ -87,24 +87,23 @@ export default createStore({
             },
         ],
         singleMovie: null,
-
+        colors: ["grey", "red", "yellow", "green", "blue"],
     },
     getters: {
         movies: state => state.movies,
         singleMovie: state => state.singleMovie,
-        movie: state => state.movie,
+        colors: state => state.colors,
+        comments: state => state.comments
     },
     mutations: {
         filterMovies(state, id) {
             state.singleMovie = state.movies.filter(x => x.id === id)[0]
         },
-        removeComment(state, id, comId) {
-            let movie = state.movies.filter(movie => movie.id === id)[0]
-            let index = movie.comments.findIndex(x => x.id === comId)
-
-
-            movie.comments = movie.comments.filter(comment => comment[index] !== comId)
-        }
+        removeComment(state, data) {
+            let movieIndex = state.movies.findIndex(movie => movie.id === data.id)
+            console.log(state.movies)
+            state.movies[movieIndex].comments = state.movies[movieIndex].comments.filter((item, index) => index !== data.index)
+        },
     },
     actions: {},
     modules: {}

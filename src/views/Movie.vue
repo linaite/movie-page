@@ -1,11 +1,12 @@
 <template>
   <div class="main_content">
-    <div class="card">
+    <div class="card" :class="[colors[counter]]">
       <img :src="movie.image" alt="">
       <div class="card_content">
         <h3>{{ movie.title }}</h3>
         <span>{{ movie.year }}</span> | <i class="fas fa-star"></i> {{ movie.rating }}
         <p>{{ movie.description }}</p>
+        <button @click="changeBgColor(1)">Change background</button>
       </div>
     </div>
     <h3>Comments</h3>
@@ -14,7 +15,7 @@
         <span>{{ item.comment }}</span>
         <span class="name">{{ item.name }}</span>
       </div>
-      <i class="fas fa-times" @click="deleted"></i>
+      <i class="fas fa-times" @click="deleted(index)"></i>
     </div>
     <div class="comment">
       <h3>Want to leave a comment?</h3>
@@ -25,6 +26,9 @@
       <div class="field-set">
         <label for="name">Comment</label>
         <textarea id="" placeholder="Comment here..." v-model="comment"></textarea>
+      </div>
+      <div v-if="inputIsInvalid" class="error">
+        <span>Input is invalid. Please enter at least a few characters...</span>
       </div>
       <button @click="submit">Submit</button>
     </div>
@@ -43,13 +47,21 @@ export default {
   data() {
     return {
       name: "",
-      comment: ''
+      comment: '',
+      counter: 0,
+      inputIsInvalid: false,
     }
   },
   computed: {
     movie() {
       return this.$store.getters.singleMovie
     },
+    colors() {
+      return this.$store.getters.colors
+    },
+    commentsLength() {
+      return this.movie.comments.length
+    }
   },
   created() {
     this.$store.commit('filterMovies', this.$route.params.id)
@@ -61,15 +73,35 @@ export default {
         name: this.name,
         comment: this.comment
       }
-      this.movie.comments.unshift(object)
-      this.name = ''
-      this.comment = ''
+
+      if (this.comment === "" || this.name === "") {
+        this.inputIsInvalid = true;
+      } else {
+        this.inputIsInvalid = false
+        this.movie.comments.unshift(object)
+        this.name = ''
+        this.comment = ''
+      }
     },
-    deleted() {
-      this.$store.commit('removeComment', this.movie.id, this.index)
-      console.log(this.index)
+
+    deleted(index) {
+      this.$store.commit('removeComment', {id: this.movie.id, index})
+    },
+    changeBgColor() {
+      console.log(this.movie.comments.length)
+
+      if (this.counter > 4) {
+        this.counter = 0
+      }
+      this.counter++
+    },
+  },
+  watch: {
+    commentsLength: function (newVal) {
+      newVal > 3 ? this.movie.comments = [] : null
+      console.log(this.movie.comments)
     }
-  }
+  },
 }
 </script>
 
@@ -127,14 +159,14 @@ label {
 input {
   font-family: 'Roboto', sans-serif;
   padding: 5px;
-  border:1px solid lightgrey;
+  border: 1px solid lightgrey;
   display: inline;
 }
 
 textarea {
   width: 100%;
   height: 70px;
-  border:1px solid lightgrey;
+  border: 1px solid lightgrey;
   font-family: 'Roboto', sans-serif;
   padding: 5px;
   box-sizing: border-box;
@@ -145,7 +177,7 @@ textarea {
 
 .fa-times {
   cursor: pointer;
-  color:#333333;
+  color: #333333;
 }
 
 .fa-star {
@@ -160,6 +192,31 @@ button {
   cursor: pointer;
   line-height: 20px;
   color: #5a5a5a;
+  margin-top: 10px
+}
+
+.error span {
+  color: red;
+}
+
+.grey {
+  background-color: #F6F6F5;
+}
+
+.red {
+  background-color: indianred;
+}
+
+.yellow {
+  background-color: #c39400;
+}
+
+.green {
+  background-color: darkgreen;
+}
+
+.blue {
+  background-color: cornflowerblue;
 }
 
 

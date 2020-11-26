@@ -8,7 +8,7 @@
     <ToolBar @send-event="trigger"/>
   </div>
   <router-view v-if="!showState"/>
-  <TheModal v-else @send-submit="showState"/>
+  <TheModal v-else @send-submit="trigger"/>
 </template>
 
 <script>
@@ -28,7 +28,7 @@ export default {
   methods: {
     trigger() {
       this.showState = !this.showState
-    },
+    }
   }
 }
 </script>
