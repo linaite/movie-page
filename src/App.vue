@@ -1,30 +1,78 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">
+      <img class="pic"
+           src="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle_black._CB1509071522_SY230_SX307_AL_.png"
+           alt="">
+    </router-link>
+    <ToolBar @send-event="trigger"/>
   </div>
-  <router-view/>
+  <router-view v-if="!showState"/>
+  <TheModal v-else @send-submit="showState"/>
 </template>
 
+<script>
+import ToolBar from "@/components/ToolBar";
+import TheModal from "@/components/TheModal";
+
+export default {
+  components: {
+    ToolBar,
+    TheModal
+  },
+  data() {
+    return {
+      showState: false
+    }
+  },
+  methods: {
+    trigger() {
+      this.showState = !this.showState
+    },
+  }
+}
+</script>
+
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0
+}
+
+
 #nav {
-  padding: 30px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  background-color: #131313;
+}
+
+.pic {
+  width: 85px;
 }
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: white;
+  text-decoration: none;
 }
 
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+
 </style>
