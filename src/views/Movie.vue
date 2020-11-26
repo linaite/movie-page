@@ -190,7 +190,7 @@ button {
   border: 1px solid #cccccc;
   border-radius: 5px;
   cursor: pointer;
-  line-height: 20px;
+  line-height: 18px;
   color: #5a5a5a;
   margin-top: 10px
 }
