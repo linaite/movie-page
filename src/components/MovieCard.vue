@@ -6,9 +6,7 @@
       <span>{{ movie.year }}</span> |
       <i class="fas fa-star"></i> <span>{{ movie.rating }}</span>
       <p>{{ movie.comments.length }} review(-s)</p>
-
     </div>
-
   </div>
 </template>
 

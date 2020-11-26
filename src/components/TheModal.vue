@@ -24,7 +24,6 @@
       <span>Input is invalid. Please enter at least a few characters...</span>
     </div>
     <button @click="submit">Submit</button>
-
   </div>
 </template>
 
@@ -47,7 +46,6 @@ export default {
     movies() {
       return this.$store.getters.movies
     },
-
   },
   methods: {
     submit() {
@@ -68,10 +66,7 @@ export default {
         this.movies.unshift(object)
       }
     },
-
   },
-
-
 }
 </script>
 
@@ -117,6 +112,4 @@ button {
 .error span {
   color: red;
 }
-
-
 </style>

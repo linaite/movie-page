@@ -8,8 +8,6 @@
     </div>
     <TheFooter/>
   </div>
-
-
 </template>
 
 <script>
@@ -40,6 +38,4 @@ body{
   display: flex;
   flex-wrap: wrap;
 }
-
-
 </style>

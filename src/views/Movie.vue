@@ -25,7 +25,7 @@
       </div>
       <div class="field-set">
         <label for="name">Comment</label>
-        <textarea id="" placeholder="Comment here..." v-model="comment"></textarea>
+        <textarea id="" placeholder="Please, comment here..." v-model="comment"></textarea>
       </div>
       <div v-if="inputIsInvalid" class="error">
         <span>Input is invalid. Please enter at least a few characters...</span>
@@ -88,8 +88,6 @@ export default {
       this.$store.commit('removeComment', {id: this.movie.id, index})
     },
     changeBgColor() {
-      console.log(this.movie.comments.length)
-
       if (this.counter > 4) {
         this.counter = 0
       }
@@ -99,7 +97,6 @@ export default {
   watch: {
     commentsLength: function (newVal) {
       newVal > 3 ? this.movie.comments = [] : null
-      console.log(this.movie.comments)
     }
   },
 }
