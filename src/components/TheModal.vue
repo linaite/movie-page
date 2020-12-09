@@ -73,7 +73,8 @@ export default {
 .form {
   width: 400px;
   padding: 30px;
-  background-color: #F6F6F5;
+  /*background-color: #F6F6F5;*/
+  background-color: #c39400;
   margin: 30px auto;
   box-sizing: border-box;
   box-shadow: 1px 1px 5px 1px #000000;
