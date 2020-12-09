@@ -85,9 +85,26 @@ export default createStore({
                     comment: "Soundtrack is epic"
                 }]
             },
+            {
+                image: "https://m.media-amazon.com/images/M/MV5BMTI1MDk4MzA2OF5BMl5BanBnXkFtZTYwMjQ3NDc3._V1_UX182_CR0,0,182,268_AL_.jpg",
+                title: "The Holiday",
+                id: "7",
+                year: "2006",
+                rating: "6.9",
+                description: "Two women troubled with guy-problems swap homes in each other's countries, where they each meet a local guy and fall in love.",
+                comments: []
+            },
+            {
+                image: "https://m.media-amazon.com/images/M/MV5BZDhlMzY0ZGItZTcyNS00ZTAxLWIyMmYtZGQ2ODg5OWZiYmJkXkEyXkFqcGdeQXVyODkzNTgxMDg@._V1_UX182_CR0,0,182,268_AL_.jpg",
+                title: "The Mandalorian ",
+                id: "8",
+                year: "2020",
+                rating: "8.7",
+                description: "The travels of a lone bounty hunter in the outer reaches of the galaxy, far from the authority of the New Republic.",
+                comments: []
+            },
         ],
         singleMovie: null,
-        colors: ["grey", "red", "yellow", "green", "blue"],
     },
     getters: {
         movies: state => state.movies,
@@ -101,10 +118,11 @@ export default createStore({
         },
         removeComment(state, data) {
             let movieIndex = state.movies.findIndex(movie => movie.id === data.id)
-            console.log(state.movies)
             state.movies[movieIndex].comments = state.movies[movieIndex].comments.filter((item, index) => index !== data.index)
         },
-    },
-    actions: {},
-    modules: {}
+        editMovie(state, movie) {
+            state.movies = state.movies.filter(x => x.id !== movie.id)
+            state.movies.unshift(movie)
+        }
+    }
 })

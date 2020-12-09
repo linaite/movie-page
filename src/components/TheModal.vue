@@ -38,7 +38,6 @@ export default {
       rating: '',
       image: '',
       description: "",
-      showState: true,
       inputIsInvalid: false,
     }
   },
@@ -92,10 +91,6 @@ label {
 
 input, textarea {
   padding: 5px 5px;
-}
-
-textarea {
-  font-family: 'Roboto', sans-serif;
 }
 
 button {

@@ -1,22 +1,21 @@
 <template>
-<footer>
-© 2020 Lina Dirmaite
-</footer>
+  <footer>
+    © 2020 Lina Dirmaite
+  </footer>
 </template>
 
 <script>
 export default {
-name: "TheFooter"
+  name: "TheFooter"
 }
 </script>
 
-<style >
-footer{
+<style>
+footer {
   background-color: black;
-  color:white;
+  color: white;
   text-align: center;
   padding: 20px;
   margin-top: auto;
 }
-
 </style>

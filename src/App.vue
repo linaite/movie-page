@@ -36,20 +36,13 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
-#app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-body {
+body, input, label, textarea, label, button {
   font-family: 'Roboto', sans-serif;
 }
 
 body {
   margin: 0
 }
-
 
 #nav {
   padding: 10px 20px;
@@ -69,10 +62,4 @@ body {
   color: white;
   text-decoration: none;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-
-
 </style>
